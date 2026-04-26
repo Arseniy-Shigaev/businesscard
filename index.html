@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Арсений Шигаев | Цифровая визитка с фото</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f2f5 0%, #e0e5ec 100%);
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #1a2a3a, #0f1a24);
+            padding: 1.8rem 2rem;
+            color: white;
+        }
+
+        /* Блок "фото + имя" в одной строке */
+        .hero-flex {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .photo-frame {
+            flex-shrink: 0;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: #2c5a7a;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-text h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-text .title {
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.12);
+            padding: 0.8rem 1rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+        }
+
+        .contact-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-row a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.5);
+        }
+
+        .contact-row a:hover {
+            border-bottom-color: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .left-section, .right-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .block {
+            background: #fefefe;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2f6;
+        }
+
+        .block h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e2f3d;
+            border-left: 5px solid #2c7da0;
+            padding-left: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .date {
+            font-size: 0.75rem;
+            color: #5f7f9c;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .company {
+            font-weight: 600;
+            color: #1f3b4c;
+        }
+
+        .desc-list {
+            list-style: none;
+            margin-top: 6px;
+        }
+
+        .desc-list li {
+            font-size: 0.85rem;
+            color: #2c3e4e;
+            margin-top: 4px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .desc-list li::before {
+            content: "•";
+            color: #2c7da0;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .skill-tag {
+            background: #eef2fa;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1f4e6e;
+        }
+
+        .job, .edu-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #e9edf2;
+            padding-bottom: 0.8rem;
+        }
+
+        .job:last-child, .edu-item:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 750px) {
+            .grid {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            .hero-flex {
+                justify-content: center;
+                text-align: center;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .contact-row {
+                flex-direction: column;
+                border-radius: 24px;
+            }
+        }
+
+        footer {
+            background: #f8fafc;
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6c86a3;
+            border-top: 1px solid #e2edf2;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="hero">
+        <!-- Блок фото + имя -->
+        <div class="hero-flex">
+            <div class="photo-frame">
+                <!-- 👇 ЗАМЕНИТЕ my_photo.jpg на имя ВАШЕГО ФАЙЛА с фото (например, arseniy.jpg) -->
+                <img src="my_photo.jpg" alt="Арсений Шигаев">
+            </div>
+            <div class="hero-text">
+                <h1>Арсений Шигаев</h1>
+                <div class="title">Специалист в области рекламы и PR | SMM-контент | Коммуникации</div>
+            </div>
+        </div>
+        <div class="contact-row">
+            <span>📍 432030, Ульяновск, ул. Ипподромная, 4А</span>
+            <span>📞 <a href="tel:+79876872924">+7 (987) 687-29-24</a></span>
+            <span>✉️ <a href="mailto:arsenit.shigaev@gmail.com">arsenit.shigaev@gmail.com</a></span>
+            <span>🚗 Кат. B</span>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="left-section">
+            <div class="block">
+                <h2>🎓 Образование</h2>
+                <div class="edu-item">
+                    <div class="date">2023 — н.в.</div>
+                    <div class="company">Ульяновский государственный технический университет (УлГТУ)</div>
+                    <div>Специальность «Реклама и связи с общественностью», очная форма</div>
+                </div>
+            </div>
+
+            <div class="block">
+                <h2>💼 Опыт работы</h2>
+                <div class="job">
+                    <div class="date">Апрель 2024 — Январь 2026 (1 год 9 мес.)</div>
+                    <div class="company">ООО «Мандарин» (Развлекательная сфера)</div>
+                    <div>Оператор аттракционов</div>
+                    <ul class="desc-list">
+                        <li>Обеспечение безопасности клиентов, контроль исправности оборудования</li>
+                        <li>Взаимодействие с посетителями, поддержание позитивной атмосферы</li>
+                        <li>Организация и проведение развлекательных мероприятий</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="date">Октябрь 2023 — Март 2024 (6 мес.)</div>
+                    <div class="company">ООО «Самокат» (Ресторан, доставка)</div>
+                    <div>Курьер</div>
+                    <ul class="desc-list">
+                        <li>Доставка заказов клиентам, высокий уровень сервиса</li>
+                        <li>Навигация по городу, работа с мобильными приложениями и логистикой</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="date">Июнь 2023 — Июль 2023 (2 мес.)</div>
+                    <div class="company">Пункт выдачи заказов Ozon</div>
+                    <div>Менеджер по маркетплейсам / Сотрудник ПВЗ</div>
+                    <ul class="desc-list">
+                        <li>Прием и выдача заказов, работа с товаром (раскладка, учет)</li>
+                        <li>Создание карточек товаров для Ozon и Wildberries</li>
+                        <li>Поддержание чистоты и порядка в зоне ПВЗ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block">
+                <h2>🏛️ Проектная деятельность</h2>
+                <div class="date">Сентябрь 2023 — н.в.</div>
+                <div>УлГТУ — активный участник студенческих мероприятий и фестивалей</div>
+                <ul class="desc-list">
+                    <li>Организация проектов кафедры рекламы и PR</li>
+                    <li>Применение теоретических знаний на практике</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="block">
+                <h2>🧠 Профессиональные знания</h2>
+                <ul class="desc-list">
+                    <li>Реклама и PR: основы теории и практики, современные тренды</li>
+                    <li>SMM и дизайн: создание контента, работа с визуальными редакторами</li>
+                    <li>Коммуникации: телефонные переговоры, работа с возражениями</li>
+                    <li>Документооборот: оформление документации, работа с базами данных</li>
+                    <li>Исследования: поиск и анализ информации в интернет</li>
+                </ul>
+            </div>
+
+            <div class="block">
+                <h2>💻 Компьютерные навыки</h2>
+                <div class="skills">
+                    <span class="skill-tag">Photoshop</span>
+                    <span class="skill-tag">Illustrator</span>
+                    <span class="skill-tag">PicsArt</span>
+                    <span class="skill-tag">MS Office</span>
+                    <span class="skill-tag">Ozon/WB карточки</span>
+                    <span class="skill-tag">ПК и оргтехника</span>
+                </div>
+            </div>
+
+            <div class="block">
+                <h2>🌟 Личностные качества</h2>
+                <div class="skills">
+                    <span class="skill-tag">Коммуникабельность</span>
+                    <span class="skill-tag">Ответственность</span>
+                    <span class="skill-tag">Аналитическое мышление</span>
+                    <span class="skill-tag">Быстрая обучаемость</span>
+                    <span class="skill-tag">Работа в команде</span>
+                    <span class="skill-tag">Инициативность</span>
+                    <span class="skill-tag">Стрессоустойчивость</span>
+                </div>
+            </div>
+
+            <div class="block">
+                <h2>📎 Дополнительно</h2>
+                <ul class="desc-list">
+                    <li>Гражданство РФ, 20 лет (2005 г.р.)</li>
+                    <li>Водительское удостоверение категории B</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+        🚀 Цифровая визитка | Контакты: +7 (987) 687-29-24 · arsenit.shigaev@gmail.com
+    </footer>
+</div>
+</body>
+</html>
